@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.leevin.www.rxjavastudy.MainActivity">
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="start"
+        android:text="start" />
+
+    <Button
+        android:id="@+id/just"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="just"
+        android:text="just" />
+
+    <Button
+        android:onClick="operation"
+        android:id="@+id/start_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="operation" />
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:indeterminate="true" />
+
+    <Button
+        android:id="@+id/ShowRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="show recycle"
+        android:onClick="showRecycle"
+        />
+
+
+</LinearLayout>
