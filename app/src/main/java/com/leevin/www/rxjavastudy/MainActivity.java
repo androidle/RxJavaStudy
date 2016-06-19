@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 import rx.Observable;
 import rx.Single;
 import rx.SingleSubscriber;
@@ -76,22 +78,52 @@ public class MainActivity extends AppCompatActivity {
                         return Math.sqrt(integer); // 返回平方根
                     }
                 })
-                .subscribe(new Subscriber<Number>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.e(TAG, "onCompleted: " );
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                    }
-
-                    @Override
-                    public void onNext(Number number) {
-                        Log.e(TAG, "onNext: ============" + number);
-                    }
-        });
+                .subscribe(justAction);
     }
+
+    private Action1 justAction = new Action1<Number>() {
+        @Override
+        public void call(Number number) {
+            Log.e(TAG, "call: ====just=====" + number);
+        }
+    };
+    
+    private Subscriber justSubscriber = new Subscriber<Number>() {
+        @Override
+        public void onCompleted() {
+            Log.e(TAG, "========onCompleted: " );
+        }
+
+        @Override
+        public void onError(Throwable e) {
+
+        }
+
+        @Override
+        public void onNext(Number number) {
+            Log.e(TAG, "onNext: =========="+number );
+        }
+    };
+
+    private Subscriber getJustSubscriber() {
+        return new Subscriber<Number>() {
+            @Override
+            public void onCompleted() {
+                Log.e(TAG, "========onCompleted: " );
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Number number) {
+                Log.e(TAG, "onNext: =========="+number );
+            }
+        };
+    }
+
 
     public void operation(View view) {
       /*  operation.setClickable(false);
@@ -157,4 +189,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void from(View v) {
+        ArrayList<String> strings = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            strings.add(i+"item");
+        }
+
+        Observable.from(strings)
+                .subscribeOn(Schedulers.computation())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+
+    }
+
+
+    // 注意当subscriber为成员变量只响应订阅一次
+    // 但当换成action时,不论是成员变量还是匿名对象，均可响应订阅
+    Subscriber<String> subscriber = new Subscriber<String>() {
+        @Override
+        public void onCompleted() {
+            Log.e(TAG, "onCompleted: ==========");
+        }
+
+        @Override
+        public void onError(Throwable e) {
+
+        }
+
+        @Override
+        public void onNext(String s) {
+            Log.e(TAG, "onNext:============ " + s);
+        }
+    };
 }

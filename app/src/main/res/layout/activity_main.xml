@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:orientation="vertical"
-    tools:context="com.leevin.www.rxjavastudy.MainActivity">
+    tools:context="com.leevin.www.rxjavastudy.MainActivity"
+    android:baselineAligned="false"
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/btn"
@@ -24,7 +25,7 @@
     <Button
         android:onClick="operation"
         android:id="@+id/start_btn"
-        android:layout_width="match_parent"
+        android:layout_width="395dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="operation" />
@@ -35,6 +36,13 @@
         android:layout_gravity="center_horizontal"
         android:indeterminate="true" />
 
+    <Button
+        android:id="@+id/from"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="from"
+        android:onClick="from"
+        />
     <Button
         android:id="@+id/ShowRecycler"
         android:layout_width="match_parent"
